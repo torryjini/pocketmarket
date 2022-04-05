@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block app_title%}
+<title>포켓마켓 - 포켓몬 스티커 전용 플랫폼</title>
+{% endblock %}
+{% block content %}
+<!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">내 꿈은 포켓몬 마스터!</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">돌아온 포켓몬빵 스티커 판매&거래 플랫폼</p>
+                </div>
+            </div>
+        </header>
+        <!-- Section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    {% for post in post_list %}
+                    <a href="/view/{{ post.id }}">
+                        <div class="col mb-5">
+                            <div class="card h-100">
+                                <!-- Product image-->
+                                {% if post.image %}
+                                <img class="card-img-top" src="{{ post.image.url }}" alt="..." />
+                                {% else %}
+                                <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                                {% endif %}
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h5 class="fw-bolder">{{ post.title }}</h5>
+                                        <!-- Product price-->
+                                        {{ post.price }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    {% empty %}
+                    <h2>등록된 포켓몬이 없습니다!</h2>
+                    {% endfor %}   
+                </div>
+            </div>
+        </section>
+{% endblock %}

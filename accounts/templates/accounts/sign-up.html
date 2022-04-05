@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block app_title %}
+<title>포켓마켓_회원가입</title>
+{% endblock %}
+{% block content %}
+<h2>회원가입</h2>
+{% if error %}
+    <script>
+        const message = "{{ error }}"
+        window.alert(message)
+    </script>
+{% endif %}
+<form method="post" action="{% url 'accounts:signup' %}">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="아이디">
+    <input type="password" name="password" placeholder="비밀번호">
+    <input type="password" name="password_check" placeholder="비밀번호 확인">
+    <input type="submit" value="회원가입">
+</form>
+{% endblock %}

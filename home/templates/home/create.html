@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block app_title %}
+<title>포켓마켓_게시물 작성</title>
+{% endblock %}
+{% block content %}
+<form action="/create/" id="post-create" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="text" name="title" id="title" placeholder="제목">
+    <br>
+    <input type="number" name="price" id="price" min="0" step="100" placeholder="0000"><label for="price">원</label>
+    <br>
+    이미지 선택 : <input type="file" name="image"/>
+    <br>
+    <input type="submit" value="게시">
+</form>
+<textarea name="content" form="post-create" cols="30" rows="10" id="content" placeholder="내용을 입력하세요"></textarea>
+{% endblock %}
